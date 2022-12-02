@@ -48,11 +48,11 @@ export function PokecardOfPokedex({ url, name }: Result) {
 
    const text = `text-${pokemon?.type}`
 
-   // const img = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${pokemon?.id}.png`
+   const img = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${pokemon?.id}.png`
 
-   const img = `https://assets.pokemon.com/assets/cms2/img/pokedex/detail/${pokemon?.id
-      .toString()
-      .padStart(3, '00')}.png`
+   // const img = `https://assets.pokemon.com/assets/cms2/img/pokedex/detail/${pokemon?.id
+   //    .toString()
+   //    .padStart(3, '00')}.png`
 
    return (
       <>

@@ -155,11 +155,11 @@ export function Pokemon() {
       }
    }
 
-   const img = `https://assets.pokemon.com/assets/cms2/img/pokedex/full/${pokemon?.id
-      .toString()
-      .padStart(3, '00')}.png`
+   // const img = `https://assets.pokemon.com/assets/cms2/img/pokedex/full/${pokemon?.id
+   //    .toString()
+   //    .padStart(3, '00')}.png`
 
-   // `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${pokemon?.id}.png`
+   const img = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${pokemon?.id}.png`
 
    const gb = `bg-${pokemon?.types?.[0]}`
 
