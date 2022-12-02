@@ -24,12 +24,14 @@ export function ImageWithLoad({ url, alt }: LoadingProps) {
             <div className="absolute h-full  w-full flex items-center justify-center">
                <Loading className=" w-12 md:w-24 animate-spin text-slate-900" />
             </div>
+
+            ${opacity}
          )} */}
          <img
             src={url}
             alt={alt}
             onLoad={() => setLoad(false)}
-            className={`object-contain h-full z-30 ${opacity}`}
+            className={`object-contain h-full z-30 `}
          />
       </>
    )
