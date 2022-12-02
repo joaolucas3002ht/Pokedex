@@ -70,7 +70,7 @@ export function PokecardOfPokedex({ url, name }: Result) {
                      className={` w-full f-6 flex items-center justify-center`}
                   >
                      <div
-                        className={`box-border flex w-full h-[5.5rem] sm:h-[6.5rem]  lg:h-[8rem] basis justify-center items-center `}
+                        className={`box-border relative flex w-full h-[5.5rem] sm:h-[6.5rem]  lg:h-[8rem] basis justify-center items-center `}
                      >
                         {pokemon && (
                            <ImageWithLoad
