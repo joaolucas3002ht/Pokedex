@@ -12,7 +12,7 @@ import { SetColors } from '../../components/SetColors'
 
 import {
    EditPokemonDataProps,
-   Stats,
+   EditStat,
 } from '../../interfaces/EditPokemonDataProps'
 import {
    FlavorTextEntry,
@@ -41,6 +41,7 @@ import { Pokeball } from '../../assets/Pokeball'
 import { GreaterThan } from '../../assets/GreaterThan'
 import { LessThan } from '../../assets/LessThan'
 import { ImageWithLoad } from '../../components/ImageWithLoad'
+import { Loading } from '../../assets/Loading'
 
 interface NextAndPreviousPokemon {
    next: string | undefined
@@ -49,17 +50,25 @@ interface NextAndPreviousPokemon {
 
 export function Pokemon() {
    const [pokemon, setPokemon] = useState<EditPokemonDataProps>()
+   const [Load, setLoad] = useState<true | false>(true)
 
    const params = useParams()
 
+   useEffect(() => console.log(Load), [Load])
+
    useEffect(() => {
+      setLoad(true)
+
       const func = async () => {
-         setPokemon(await editPokemonDetalist(params.id))
+         const deta = editPokemonDetalist(params.id)
+         setPokemon(await deta)
+
+         setLoad(false)
       }
       func()
    }, [params])
 
-   const editPokemonDetalist = async (idPokemon: string | undefined) => {
+   async function editPokemonDetalist(idPokemon: string | undefined) {
       try {
          const url = `https://pokeapi.co/api/v2/pokemon/${idPokemon}/`
          const pokemonData: PokemonDetail = await getDetalistJson(url)
@@ -123,13 +132,20 @@ export function Pokemon() {
       )
    }
 
-   const editPokemonStats = ([hp, atk, dep, satk, sdef, spd]: Stat[]) => [
-      { name: 'hp', baseStat: hp.base_stat },
-      { name: 'atk', baseStat: atk.base_stat },
-      { name: 'dep', baseStat: dep.base_stat },
-      { name: 'satk', baseStat: satk.base_stat },
-      { name: 'sdef', baseStat: sdef.base_stat },
-      { name: 'spd', baseStat: spd.base_stat },
+   const editPokemonStats = ([
+      statHP,
+      statATK,
+      statDEP,
+      statSATK,
+      statsDEP,
+      statSPD,
+   ]: Stat[]) => [
+      { name: 'hp', baseStat: statHP.base_stat },
+      { name: 'atk', baseStat: statATK.base_stat },
+      { name: 'dep', baseStat: statDEP.base_stat },
+      { name: 'satk', baseStat: statSATK.base_stat },
+      { name: 'sdef', baseStat: statsDEP.base_stat },
+      { name: 'spd', baseStat: statSPD.base_stat },
    ]
 
    const filterAndFormatPokemonText = (flavorText: FlavorTextEntry[]) => {
@@ -166,9 +182,19 @@ export function Pokemon() {
    const text = `text-${pokemon?.types?.[0]}`
 
    return (
-      <div className="flex items-center gap-1 flex-col">
-         <article className="bg-gray-500 p-3 w-auto max:w-[24rem] h-screen min-h-[39.0625rem] md:w-full ">
-            <SetColors />
+      <div
+         className="flex return items-center gap-1 flex-col"
+         onLoad={() => {}}
+      >
+         {Load && (
+            <div
+               className={`absolute h-auto w-auto top-1/3 -translate-x-1/2  left-1/2 z-50`}
+            >
+               <Loading className=" w-12 h-12 z-50  md:w-24 md:h-24 animate-spin text-slate-900 " />
+            </div>
+         )}
+         <article className="bg-gray-500 p-3 w-full max-w-xl h-screen min-h-[39.0625rem] md:w-full md:max-w-6xl rounded-lg">
+
             {pokemon && (
                <div
                   className={` ${gb} p-1 w-auto h-full rounded-xl flex flex-col z-0 items-center justify-end relative overflow-hidden md:flex md:justify-between md:flex-row `}
@@ -260,7 +286,7 @@ export function Pokemon() {
                         Base Stats
                      </h3>
                      <div className=" w-full ">
-                        {pokemon.stats.map((stat: Stats) => (
+                        {pokemon.stats.map((stat: EditStat) => (
                            <BaseStat
                               key={stat.name}
                               valueStat={stat.baseStat}

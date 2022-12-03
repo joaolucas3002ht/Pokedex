@@ -1,3 +1,5 @@
+import { useEffect, useRef } from 'react'
+
 interface BaseStatProps {
    valueStat: number
    nameStat: string
@@ -9,11 +11,13 @@ export const BaseStat = ({ type, nameStat, valueStat }: BaseStatProps) => {
 
    const valueStatInPadStart = valueStat.toString().padStart(3, '000')
 
-   setTimeout(() => {
-      const setValueStat: any = document.querySelector('.' + nameStat)
+   const ref = useRef<HTMLDivElement>(null)
+
+   useEffect(() => {
+      const setValueStat: any = ref.current
       const calc = valueStat * (100 / 255)
       setValueStat.style.width = calc + '%'
-   }, 5)
+   }, [])
 
    return (
       <div className=" m-auto ">
@@ -32,7 +36,7 @@ export const BaseStat = ({ type, nameStat, valueStat }: BaseStatProps) => {
             <div
                className={`flex justify-start items-start h-1  overflow-hidden w-full max-w-[15.9375rem]  rounded bg-gray-600 md:h-[.375rem] m-0 md:ml-1`}
             >
-               <div className={`h-3 ${bg}  ${nameStat}`}></div>
+               <div ref={ref} className={`h-3 ${bg}`}></div>
             </div>
          </section>
       </div>

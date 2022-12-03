@@ -4,14 +4,14 @@ export interface EditPokemonDataProps {
    name: string
    height: number
    description: string | undefined
-   stats: Stats[]
+   stats: EditStat[]
    types: string[]
    weight: number
    next: string | undefined
    previous: string | undefined
 }
 
-export interface Stats {
+export interface EditStat {
    name: string
    baseStat: number
 }
