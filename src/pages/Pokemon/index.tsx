@@ -6,7 +6,6 @@ import { useEffect, useState } from 'react'
 import { BaseStat } from '../../components/BaseStat'
 import { AboutTitle } from '../../components/AboutTitle'
 import { Type } from '../../components/Type'
-import { SetColors } from '../../components/SetColors'
 
 // Interfaces
 
@@ -40,7 +39,6 @@ import { Vector } from '../../assets/Vector'
 import { Pokeball } from '../../assets/Pokeball'
 import { GreaterThan } from '../../assets/GreaterThan'
 import { LessThan } from '../../assets/LessThan'
-import { ImageWithLoad } from '../../components/ImageWithLoad'
 import { Loading } from '../../assets/Loading'
 
 interface NextAndPreviousPokemon {
@@ -194,7 +192,6 @@ export function Pokemon() {
             </div>
          )}
          <article className="bg-gray-500 p-3 w-full max-w-xl h-screen min-h-[39.0625rem] md:w-full md:max-w-6xl rounded-lg">
-
             {pokemon && (
                <div
                   className={` ${gb} p-1 w-auto h-full rounded-xl flex flex-col z-0 items-center justify-end relative overflow-hidden md:flex md:justify-between md:flex-row `}
@@ -237,9 +234,10 @@ export function Pokemon() {
                      </section>
                      <div className="relative w-[80%] h-auto max-w-[15.5rem] min-w-[12rem] min-h-[12rem]  max-h-[15.5rem] z-30 md:z-0 -mb-16 md:m-0 md:h-full md:min-h-full md:w-full md:max-w-[450px] ">
                         {pokemon && (
-                           <ImageWithLoad
-                              url={img}
+                           <img
+                              src={img}
                               alt={pokemon.name.replaceAll('-', ' ')}
+                              className={`object-contain h-full  `}
                            />
                         )}
                      </div>
