@@ -58,7 +58,6 @@ export function Pokedex() {
 
    return (
       <article className="bg-slate-800 p-3 w-full min-h-screen h-full">
-         <SetColors />
          <div className=" w-full h-auto min-h-fit max-w-4xl m-auto">
             <div
                className={`px-3 pt-6 bg-gray-600 w-auto rounded-xl flex flex-col gap-2 items-center min-h-full`}
