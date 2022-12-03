@@ -5,7 +5,6 @@ import { useState, useEffect } from 'react'
 import { Autocomplite } from '../../components/Autocomplite'
 import { PokecardOfPokedex } from '../../components/PokecardOfPokedex'
 import Menu from '../../components/Menu'
-import { SetColors } from '../../components/SetColors'
 
 // Services
 
@@ -76,7 +75,7 @@ export function Pokedex() {
                         reverseArrayPokemons={reversePokemonsAll}
                      />
                   </div>
-                  <div className="relative">
+                  <div className="relative z-10">
                      <Autocomplite
                         arrayName={pokemonsAll}
                         func={setArrayPokemons}

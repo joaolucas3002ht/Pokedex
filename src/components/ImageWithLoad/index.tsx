@@ -20,7 +20,7 @@ export function ImageWithLoad({ url, alt }: LoadingProps) {
       <>
          {Loads && (
             <div className="absolute h-full  w-full flex items-center justify-center ">
-               <Loading className=" w-12 z-50 md:w-24 animate-spin text-slate-900" />
+               <Loading className=" w-12 md:w-24 animate-spin text-slate-900" />
             </div>
          )}
          <img
