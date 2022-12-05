@@ -13,7 +13,6 @@ interface PropsArrayName {
 export function Autocomplite({ arrayName, func }: PropsAutocomplite) {
    const [valueInput, setValueInput] = useState('')
    const [TypeButton, setTypeButton] = useState<any>('submit')
-   const valueLabel = 'Search'
 
    const filterNames = (Input: string) => {
       const value = Input.toLowerCase()
@@ -68,7 +67,7 @@ export function Autocomplite({ arrayName, func }: PropsAutocomplite) {
             <label
                htmlFor="Username"
                id="uint"
-               className={`text-xs md:text-sm absolute text-gray-400 -z-10 transform -translate-x-2/4 -translate-y-2/4 top-1/2 left-1/2 flex flex-row justify-center items-center peer-placeholder-shown:z-10 after:gap-2 after:content-['${valueLabel}'] after:font-light after:py-1 after:font-mono after:ml-0.5 after:text-gray-40`}
+               className={`text-xs md:text-sm absolute text-gray-400 -z-10 transform -translate-x-2/4 -translate-y-2/4 top-1/2 left-1/2 flex flex-row justify-center items-center peer-placeholder-shown:z-10 after:gap-2 after:content-['Search'] after:font-light after:py-1 after:font-mono after:ml-0.5 after:text-gray-40`}
             ></label>
             <button
                type={valueInput.length > 0 ? 'submit' : 'button'}
