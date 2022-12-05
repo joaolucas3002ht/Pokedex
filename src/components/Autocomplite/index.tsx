@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react'
+import { useState, useEffect } from 'react'
 
 interface PropsAutocomplite {
    arrayName: PropsArrayName[]
@@ -12,7 +12,8 @@ interface PropsArrayName {
 
 export function Autocomplite({ arrayName, func }: PropsAutocomplite) {
    const [valueInput, setValueInput] = useState('')
-   const [inputFous, setInputFous] = useState<true | false>(false)
+   const [TypeButton, setTypeButton] = useState<any>('submit')
+   const valueLabel = 'Search'
 
    const filterNames = (Input: string) => {
       const value = Input.toLowerCase()
@@ -30,13 +31,15 @@ export function Autocomplite({ arrayName, func }: PropsAutocomplite) {
    }
 
    useEffect(() => {
+      valueInput.length > 0 ? setTypeButton('submit') : setTypeButton('button')
       filterNames(valueInput)
    }, [valueInput])
 
    function formData(e: any) {
       e.preventDefault()
+
       let text = valueInput.trim()
-      while (text.includes('  ') || text.includes('--')) {
+      while (text.includes(' ') || text.includes('--')) {
          text = text.replaceAll(' ', '-').replaceAll('--', '-')
       }
       func(filterNames(text))
@@ -44,35 +47,37 @@ export function Autocomplite({ arrayName, func }: PropsAutocomplite) {
    }
 
    return (
-      <>
+      <div className="relative">
          <form
             onSubmit={formData}
             name="valform"
             action=""
             method="POST"
-            className="relative flex justify-center items-center  z-0 "
+            className="relative flex justify-center items-center  w-[20.5rem] h-6 rounded-lg md:h-8 md:w-[23rem] m-auto"
          >
             <input
                onChange={(e) => setValueInput(e.target.value)}
                value={valueInput}
-               onFocus={() => setInputFous(true)}
-               onBlur={() => setTimeout(() => setInputFous(false), 250)}
                autoComplete="off"
                type="text"
                id="Username"
                name="Username"
-               className="text-xs md:text-sm w-[20.5rem] h-6 px-2 py-1 rounded-lg md:h-8 md:w-[23rem] text-center outline-none peer"
+               className="text-xs md:text-sm w-[20.5rem] h-6 px-2 py-1 rounded-lg md:h-8 md:w-[23rem] bg-[hsl(214,13%,47%)] text-gray-300 text-center outline-none peer"
                placeholder=" "
             />
             <label
                htmlFor="Username"
                id="uint"
-               className="fa fa-2x text-xs md:text-sm absolute text-gray-400 -z-10 transform -translate-x-2/4 -translate-y-2/4 top-1/2 left-1/2 flex flex-row justify-center items-center peer-placeholder-shown:z-10 after: gap-2 after:content-['Procura'] after:font-light after:py-1 after:font-mono after:ml-0.5 after:text-gray-40"
+               className={`text-xs md:text-sm absolute text-gray-400 -z-10 transform -translate-x-2/4 -translate-y-2/4 top-1/2 left-1/2 flex flex-row justify-center items-center peer-placeholder-shown:z-10 after:gap-2 after:content-['${valueLabel}'] after:font-light after:py-1 after:font-mono after:ml-0.5 after:text-gray-40`}
+            ></label>
+            <button
+               type={valueInput.length > 0 ? 'submit' : 'button'}
+               className="fa fa-2x text-xs md:text-sm bg-slate-900 text-slate-300 w-[2.5rem] h-6 px-2 py-1 rounded-r-lg md:h-8 md:w-[3rem] text-center absolute right-0 hover:bg-slate-700 z-0"
             >
                &#xf002;
-            </label>
+            </button>
          </form>
-         {nameIsEgualInput(valueInput).length > 0 && inputFous && (
+         {nameIsEgualInput(valueInput).length > 0 && (
             <div
                className={
                   'w-full flex bottom-0 h-0 flex-col absolute justify-center items-center translate-y-2'
@@ -91,7 +96,9 @@ export function Autocomplite({ arrayName, func }: PropsAutocomplite) {
                   {nameIsEgualInput(valueInput).map((e: PropsArrayName, i) => (
                      <li key={`button-${i}`}>
                         <button
-                           onClick={() => setValueInput(e.name)}
+                           onClick={() => {
+                              setValueInput(e.name)
+                           }}
                            className={
                               'text-base w-full hover:bg-gray-600 p-[2px] text-gray-100'
                            }
@@ -103,6 +110,6 @@ export function Autocomplite({ arrayName, func }: PropsAutocomplite) {
                </ul>
             </div>
          )}
-      </>
+      </div>
    )
 }

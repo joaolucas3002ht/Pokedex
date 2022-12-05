@@ -58,7 +58,7 @@ export function PokecardOfPokedex({ url, name }: Result) {
       <>
          {pokemon && (
             <button
-               className={` box-border rounded-lg  ${border}   w-[8.5rem] h-[8.5rem] sm:w-[9.5rem] sm:h-[9.5rem]   lg:h-[12rem] lg:w-[12rem] bg-slate-800  justify-between items-center`}
+               className={` box-border rounded-lg  ${border}   w-[8.5rem] h-[8.5rem] sm:w-[9.5rem] sm:h-[9.5rem] z-0 lg:h-[12rem] lg:w-[12rem] bg-slate-800  justify-between items-center`}
             >
                <Link to={`/pokemon/${name}`}>
                   <div
