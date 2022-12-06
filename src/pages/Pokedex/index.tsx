@@ -58,7 +58,7 @@ export function Pokedex() {
    return (
       <article className="bg-slate-800 p-3 w-full min-h-screen ">
          <div
-            className={`px-3 py-6  h-full bg-gray-600 min-h-min rounded-xl flex flex-col gap-2 items-center max-w-4xl m-auto`}
+            className={`px-3 py-6 h-full min-h-[calc(100vh_-_1.5rem)] bg-gray-600  rounded-xl flex flex-col gap-2 items-center max-w-4xl m-auto`}
          >
             <header className="flex flex-col gap-2 w-full px-4 z-10">
                <div className="flex justify-between px-[5%] z-10  relative">
@@ -68,11 +68,11 @@ export function Pokedex() {
                         Pokedex
                      </h1>
                   </button>
-                     <Menu
-                        func={setArrayPokemons}
-                        ArrayPokemons={pokemonsAll}
-                        reverseArrayPokemons={reversePokemonsAll}
-                     />
+                  <Menu
+                     func={setArrayPokemons}
+                     ArrayPokemons={pokemonsAll}
+                     reverseArrayPokemons={reversePokemonsAll}
+                  />
                </div>
                <Autocomplite arrayName={pokemonsAll} func={setArrayPokemons} />
             </header>

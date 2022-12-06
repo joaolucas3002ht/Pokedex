@@ -180,10 +180,7 @@ export function Pokemon() {
    const text = `text-${pokemon?.types?.[0]}`
 
    return (
-      <div
-         className="flex return items-center gap-1 flex-col"
-         onLoad={() => {}}
-      >
+      <div className="flex return items-center gap-1 flex-col p-3 w-full min-h-screen ">
          {Load && (
             <div
                className={`absolute h-auto w-auto top-1/3 -translate-x-1/2  left-1/2 z-50`}
@@ -191,7 +188,7 @@ export function Pokemon() {
                <Loading className=" w-12 h-12 z-50  md:w-24 md:h-24 animate-spin text-slate-900 " />
             </div>
          )}
-         <article className="bg-gray-500 p-3 w-full max-w-xl h-screen min-h-[39.0625rem] md:w-full md:max-w-6xl rounded-lg">
+         <article className="bg-gray-500 p-3 h-[calc(100vh_-_1.5rem)] max-w-xl   min-h-[39.0625rem] md:w-full md:max-w-6xl rounded-lg">
             {pokemon && (
                <div
                   className={` ${gb} p-1 w-auto h-full rounded-xl flex flex-col z-0 items-center justify-end relative overflow-hidden md:flex md:justify-between md:flex-row `}
