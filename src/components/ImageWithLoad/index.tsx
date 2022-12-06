@@ -26,7 +26,7 @@ export function ImageWithLoad({ url, alt }: LoadingProps) {
          <img
             src={url}
             alt={alt}
-            loading="lazy"
+            loading="lazy" 
             onLoad={() => setLoads(false)}
             className={`object-contain h-full  ${opacity}`}
          />
