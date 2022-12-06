@@ -1,2 +1,35 @@
 # Pokedex
- Push the pokedex project using react , typescript and tailwind css
+
+Projeto de criado como um aplicativo web com react e typescript, utilizando Vite para a creação do projeto, a pokedex utiliza os dados da [PokeApi](https://pokeapi.co/) com estilização utilizando [tailwindcss](https://tailwindcss.com/) .
+
+## Features
+
+Features do projeto.
+
+- [x] Pokédex
+- [x] Pokédex - Pesquisar pelo nome
+- [ ] Pokédex - Pesquisar pelo id
+- [ ] Pokédex - Pesquisar por tipo
+- [ ] Pokédex - Pesquisar por Geração
+- [ ] Pokédex - Moves
+- [ ] Pokédex - Items
+- [x] Pokédex - Abilidades
+- [x] Pokemon
+- [x] Pokemon - Informações
+- [x] Pokemon - Sobre
+- [x] Pokemon - Estatísticas básicas
+- [ ] Pokemon - Evoluções
+
+##  
+
+Este projeto e aberto, qualquer ideia e bem vinda.
+
+## Inicia projeto
+
+Comece copiando o projeto e execute `npm install` dentro da pasta do projeto no terminal execute `npm rum dev` para iniciar o servidor 
+
+Abra http://localhost:3000 para visualizá-lo no navegador.
+
+A página será recarregada se você fizer edições. Você também verá quaisquer erros de lint no console.
+
+
