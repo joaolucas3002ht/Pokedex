@@ -1,4 +1,4 @@
-# [Pokedex](https://pokedex-beryl-rho.vercel.app/)
+<h1><a href="https://pokedex-beryl-rho.vercel.app/" target="_blank"  rel="noopener noreferrer" >Pokedex</a></h1>
 
 Projeto de criado como um aplicativo web com react e typescript, utilizando Vite para a creação do projeto, a pokedex utiliza os dados da [PokeApi](https://pokeapi.co/) com estilização utilizando [tailwindcss](https://tailwindcss.com/) .
 
