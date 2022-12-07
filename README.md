@@ -31,6 +31,6 @@ Comece copiando o projeto e execute `npm install` dentro da pasta do projeto no 
 
 Abra http://localhost:3000 para visualizá-lo no navegador.
 
-A página será recarregada se você fizer edições. Você também verá quaisquer erros de lint no console.
+A página será recarregada sempre que você fizer uma alteração. Você também verá quaisquer erros de lint no console.
 
 
