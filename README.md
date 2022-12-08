@@ -27,7 +27,7 @@ Este projeto e aberto, qualquer ideia e bem vinda.
 
 ## Inicia projeto
 
-Comece copiando o projeto e execute `npm install` dentro da pasta do projeto no terminal execute `npm rum dev` para iniciar o servidor 
+Comece copiando o projeto e execute `npm install` dentro da pasta do projeto no terminal execute `npm run dev` para iniciar o servidor 
 
 Abra http://localhost:3000 para visualizá-lo no navegador.
 
