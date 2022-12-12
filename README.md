@@ -19,7 +19,7 @@ Features do projeto.
 - [x] Pokemon - Sobre
 - [x] Pokemon - Estatísticas básicas
 - [ ] Pokemon - Evoluções
-- [ ] Página 404
+- [x] Página 404
 
 ##  
 
