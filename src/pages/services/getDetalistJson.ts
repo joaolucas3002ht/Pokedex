@@ -5,5 +5,8 @@ export async function getDetalistJson(url: string) {
       return data
    } catch (err) {
       console.error(err)
+      console.log(url);
+      
+      return undefined
    }
 }
