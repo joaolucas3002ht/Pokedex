@@ -193,25 +193,23 @@ export function Pokemon() {
                      className={` ${gb} p-1 w-auto h-full rounded-xl flex flex-col z-0 items-center justify-end relative overflow-hidden md:flex md:justify-between md:flex-row `}
                   >
                      {pokemon.previous && (
-                        <button className="absolute top-[40%] -translate-y-1/2 z-50 left-1 md:left-2  md:translate-y-0">
-                           <Link
-                              aria-label={`Previous pokemon`}
-                              to={`/pokemon/${pokemon.previous}`}
-                           >
-                              <LessThan className="w-5 h-8 p-1 md:w-6 md:h-10" />
-                           </Link>
-                        </button>
+                        <Link
+                           className="absolute top-[40%] -translate-y-1/2 z-50 left-1 md:left-2  md:translate-y-0"
+                           aria-label={`Previous pokemon`}
+                           to={`/pokemon/${pokemon.previous}`}
+                        >
+                           <LessThan className="w-5 h-8 p-1 md:w-6 md:h-10" />
+                        </Link>
                      )}
 
                      {pokemon.next && (
-                        <button className="absolute top-[40%] -translate-y-1/2 z-50 right-1 md:right-2 md:translate-y-0">
-                           <Link
-                              aria-label={`Next pokemon`}
-                              to={`/pokemon/${pokemon.next}`}
-                           >
-                              <GreaterThan className="w-5 h-8 p-1 md:w-6 md:h-10" />
-                           </Link>
-                        </button>
+                        <Link
+                           aria-label={`Next pokemon`}
+                           to={`/pokemon/${pokemon.next}`}
+                           className="absolute top-[40%] -translate-y-1/2 z-50 right-1 md:right-2 md:translate-y-0"
+                        >
+                           <GreaterThan className="w-5 h-8 p-1 md:w-6 md:h-10" />
+                        </Link>
                      )}
 
                      <div className="w-full flex flex-col z-20 items-center justify-end relative h-full md:flex-1 md:z-0 ">
@@ -220,11 +218,9 @@ export function Pokemon() {
                         </div>
                         <section className="absolute z-30 top-6 flex items-center w-full justify-between px-6 ">
                            <div className="flex items-center gap-3 ">
-                              <button>
-                                 <Link aria-label="Go to Pokedex" to="/">
-                                    <ArrowLeft className="w-6 h-8 text-zinc-200" />
-                                 </Link>
-                              </button>
+                              <Link aria-label="Go to Pokedex" to="/">
+                                 <ArrowLeft className="w-6 h-8 text-zinc-200" />
+                              </Link>
                               <h3 className="text-zinc-200 font-bold text-2xl capitalize ">
                                  {pokemon.name.replaceAll('-', ' ')}
                               </h3>
