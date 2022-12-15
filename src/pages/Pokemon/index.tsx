@@ -232,6 +232,9 @@ export function Pokemon() {
                            {pokemon && (
                               <img
                                  src={img}
+                                 width="100%"
+                                 height="auto"
+                                 loading="lazy"
                                  alt={pokemon.name.replaceAll('-', ' ')}
                                  className={`object-contain h-full  `}
                               />
