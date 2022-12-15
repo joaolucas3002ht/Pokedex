@@ -193,21 +193,22 @@ export function Pokemon() {
                      className={` ${gb} p-1 w-auto h-full rounded-xl flex flex-col z-0 items-center justify-end relative overflow-hidden md:flex md:justify-between md:flex-row `}
                   >
                      {pokemon.previous && (
-                        <button
-                           aria-label={`Previous pokemon`}
-                           className="absolute top-[40%] -translate-y-1/2 z-50 left-1 md:left-2  md:translate-y-0"
-                        >
-                           <Link to={`/pokemon/${pokemon.previous}`}>
+                        <button className="absolute top-[40%] -translate-y-1/2 z-50 left-1 md:left-2  md:translate-y-0">
+                           <Link
+                              aria-label={`Previous pokemon`}
+                              to={`/pokemon/${pokemon.previous}`}
+                           >
                               <LessThan className="w-5 h-8 p-1 md:w-6 md:h-10" />
                            </Link>
                         </button>
                      )}
 
                      {pokemon.next && (
-                        <button
-                        aria-label={`Next pokemon`}
-                         className="absolute top-[40%] -translate-y-1/2 z-50 right-1 md:right-2 md:translate-y-0">
-                           <Link to={`/pokemon/${pokemon.next}`}>
+                        <button className="absolute top-[40%] -translate-y-1/2 z-50 right-1 md:right-2 md:translate-y-0">
+                           <Link
+                              aria-label={`Next pokemon`}
+                              to={`/pokemon/${pokemon.next}`}
+                           >
                               <GreaterThan className="w-5 h-8 p-1 md:w-6 md:h-10" />
                            </Link>
                         </button>
@@ -220,8 +221,8 @@ export function Pokemon() {
                         <section className="absolute z-30 top-6 flex items-center w-full justify-between px-6 ">
                            <div className="flex items-center gap-3 ">
                               <button>
-                                 <Link to="/">
-                                    <ArrowLeft aria-label="Go to Pokedex" className="w-6 h-8 text-zinc-200" />
+                                 <Link aria-label="Go to Pokedex" to="/">
+                                    <ArrowLeft className="w-6 h-8 text-zinc-200" />
                                  </Link>
                               </button>
                               <h3 className="text-zinc-200 font-bold text-2xl capitalize ">

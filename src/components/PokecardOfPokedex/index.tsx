@@ -58,10 +58,9 @@ export function PokecardOfPokedex({ url, name }: Result) {
       <>
          {pokemon && (
             <button
-               aria-label={name}
                className={` box-border rounded-lg  ${border}   w-[8.5rem] h-[8.5rem] sm:w-[9.5rem] sm:h-[9.5rem] z-0 lg:h-[12rem] lg:w-[12rem] bg-slate-800  justify-between items-center`}
             >
-               <Link to={`/pokemon/${name}`}>
+               <Link aria-label={name} to={`/pokemon/${name}`}>
                   <div
                      className={`${text}  basis h-[1.5rem] lg:h-[2rem] lg:text-sm text-xs w-full pt-1 px-2 text-right rounded-t-lg `}
                   >
