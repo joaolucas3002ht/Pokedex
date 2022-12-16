@@ -57,37 +57,35 @@ export function PokecardOfPokedex({ url, name }: Result) {
    return (
       <>
          {pokemon && (
-               <Link
-                  aria-label={name}
-                  to={`/pokemon/${name}`}
-                  className={` box-border rounded-lg  ${border}   w-[8.5rem] h-[8.5rem] sm:w-[9.5rem] sm:h-[9.5rem] z-0 lg:h-[12rem] lg:w-[12rem] bg-slate-800  justify-between items-center`}
+            <Link
+               aria-label={name}
+               to={`/pokemon/${name}`}
+               className={` box-border rounded-lg  ${border}   w-[8.5rem] h-[8.5rem] sm:w-[9.5rem] sm:h-[9.5rem] z-0 lg:h-[12rem] lg:w-[12rem] bg-slate-800  justify-between items-center`}
+            >
+               <div
+                  className={`${text}  basis h-[1.5rem] lg:h-[2rem] lg:text-sm text-xs w-full pt-1 px-2 text-right rounded-t-lg `}
                >
+                  #{pokemon.id.toString().padStart(3, '00')}
+               </div>
+               <div className={` w-full f-6 flex items-center justify-center`}>
                   <div
-                     className={`${text}  basis h-[1.5rem] lg:h-[2rem] lg:text-sm text-xs w-full pt-1 px-2 text-right rounded-t-lg `}
+                     className={`box-border relative flex w-full h-[5.5rem] sm:h-[6.5rem]  lg:h-[8rem] basis justify-center items-center `}
                   >
-                     #{pokemon.id.toString().padStart(3, '00')}
+                     {pokemon && (
+                        <ImageWithLoad
+                           url={img}
+                           alt={pokemon.name.replaceAll('-', ' ')}
+                        />
+                     )}
                   </div>
-                  <div
-                     className={` w-full f-6 flex items-center justify-center`}
-                  >
-                     <div
-                        className={`box-border relative flex w-full h-[5.5rem] sm:h-[6.5rem]  lg:h-[8rem] basis justify-center items-center `}
-                     >
-                        {pokemon && (
-                           <ImageWithLoad
-                              url={img}
-                              alt={pokemon.name.replaceAll('-', ' ')}
-                           />
-                        )}
-                     </div>
-                  </div>
-                  <div
-                     className={`${bg} basis h-[1.5rem] lg:h-[2rem] w-full text-xs lg:text-sm text-zinc-100 font-medium flex items-center justify-center rounded-b-lg uppercase`}
-                  >
-                     {pokemon.name.replaceAll('-', ' ')}
-                  </div>
-               </Link>
+               </div>
+               <div
+                  className={`${bg} basis h-[1.5rem] lg:h-[2rem] w-full text-xs lg:text-sm text-zinc-100 font-medium flex items-center justify-center rounded-b-lg uppercase`}
+               >
+                  {pokemon.name.replaceAll('-', ' ')}
+               </div>
+            </Link>
          )}
       </>
-   )  
+   )
 }
