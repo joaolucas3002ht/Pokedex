@@ -19,6 +19,8 @@ export function SetColors() {
          <div className="text-dark bg-dark "></div>
          <div className="text-steel bg-steel "></div>
          <div className="text-fairy bg-fairy"></div>
+         <div className="text-none bg-none"></div>
+
       </>
    )
 }

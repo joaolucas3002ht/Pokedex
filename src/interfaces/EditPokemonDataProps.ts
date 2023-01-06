@@ -1,5 +1,8 @@
+import { DamageRelations } from "./RelationsOfTypePokemons"
+
 export interface EditPokemonDataProps {
    abilities: string[]
+   DamageRelations: DamageRelations[]
    id: number
    name: string
    height: number

@@ -29,16 +29,17 @@ module.exports = {
             dark: '#705746',
             steel: '#B7B7CE',
             fairy: '#D685AD',
+            none: '#BfBfBf',
          },
       },
       screens: {
          sm: '576px',
          md: '800px',
-         lg: "900px",
+         lg: '900px',
       },
       animation: {
-         'spin': 'spin 0.6s linear infinite',
-       }
+         spin: 'spin 0.6s linear infinite',
+      },
    },
    plugins: [require('tailwind-scrollbar')],
    variants: {

@@ -41,6 +41,8 @@ import { GreaterThan } from '../../assets/GreaterThan'
 import { LessThan } from '../../assets/LessThan'
 import { Loading } from '../../assets/Loading'
 import { Page404 } from '../Page404'
+import { RelationsOfTypePokemons } from '../../interfaces/RelationsOfTypePokemons'
+import { DamageRelations } from '../../components/DamageRelations'
 
 interface NextAndPreviousPokemon {
    next: string | undefined
@@ -56,23 +58,19 @@ export function Pokemon() {
    const params = useParams()
 
    useEffect(() => {
-      const func = async (id: any) =>
-         setDescriptions(await getDescriptionsPokemon(id))
-
-      func(pokemon?.id)
-   }, [pokemon])
+      setLoad(true)
+      ;(async () => {
+         setPokemon(await editPokemonDetalist(params.id))
+         setLoad(false)
+      })()
+   }, [params])
 
    useEffect(() => {
-      setLoad(true)
-
-      const func = async () => {
-         const deta = editPokemonDetalist(params.id)
-         setPokemon(await deta)
-
-         setLoad(false)
-      }
-      func()
-   }, [params])
+      pokemon &&
+         (async (id: number) => {
+            setDescriptions(await getDescriptionsPokemon(id))
+         })(pokemon.id)
+   }, [pokemon])
 
    async function editPokemonDetalist(idPokemon: string | undefined) {
       const url = `https://pokeapi.co/api/v2/pokemon/${idPokemon}/`
@@ -85,10 +83,20 @@ export function Pokemon() {
          const nextAndPreviousPokemon: NextAndPreviousPokemon =
             await getNextAndPreviousPokemon(id)
 
+         const DamageRelations = await Promise.all(
+            types.map(async (i: InterfaceType) => {
+               const type: RelationsOfTypePokemons = await getDetalistJson(
+                  i.type.url,
+               )
+               return type.damage_relations
+            }),
+         )
+
          const editPokemonDetalist = {
             id,
             name,
             abilities: editPokemonAbilities(abilities),
+            DamageRelations,
             weight: weight / 10,
             height: height / 10,
             stats: editPokemonStats(stats),
@@ -109,21 +117,16 @@ export function Pokemon() {
       }`
       const PokemonDeta: ArrayPokemonDeta = await getDetalistJson(urlPokemon)
 
-      const next: ArrayPokemonDeta = PokemonDeta.next
-         ? await getDetalistJson(PokemonDeta.next)
-         : PokemonDeta.next
+      const next: ArrayPokemonDeta =
+         PokemonDeta.next && (await getDetalistJson(PokemonDeta.next))
 
-      const previous: ArrayPokemonDeta = PokemonDeta.previous
-         ? await getDetalistJson(PokemonDeta.previous)
-         : PokemonDeta.previous
+      const previous: ArrayPokemonDeta =
+         PokemonDeta.previous && (await getDetalistJson(PokemonDeta.previous))
 
-      const filterNext = next?.results
-         ? filterUrlShapesPokemon(next?.results)
-         : next?.results
+      const filterNext = next?.results && filterUrlShapesPokemon(next?.results)
 
-      const filterPrevious = previous?.results
-         ? filterUrlShapesPokemon(previous?.results)
-         : previous?.results
+      const filterPrevious =
+         previous?.results && filterUrlShapesPokemon(previous?.results)
 
       return {
          next: filterNext?.[0]?.name,
@@ -131,11 +134,10 @@ export function Pokemon() {
       }
    }
 
-   function editPokemonAbilities(Abilities: Ability[]) {
-      return Abilities.filter((e, index) => index <= 1).map((obj: Ability) =>
+   const editPokemonAbilities = (Abilities: Ability[]) =>
+      Abilities.filter((e, index) => index <= 1).map((obj: Ability) =>
          obj.ability.name.replaceAll('-', ' '),
       )
-   }
 
    const editPokemonStats = ([
       statHP,
@@ -186,11 +188,12 @@ export function Pokemon() {
                <Loading className=" w-12 h-12 z-50  md:w-24 md:h-24 animate-spin text-slate-900 " />
             </div>
          )}
+         {/* h-[min:(39.0625rem,_calc(100vh_-_1.5rem))]   */}
          {pokemon || Load ? (
-            <article className="bg-gray-500 m-3 p-3 h-[calc(100vh_-_1.5rem)] max-w-[34.375rem] w-full  min-h-[39.0625rem] md:w-full md:max-w-6xl rounded-lg">
+            <article className="bg-gray-500 m-3 p-3 h-auto md:h-[calc(100vh_-_1.5rem)] max-w-[34.375rem] md:min-h-[35rem] w-full min-md:w-full md:max-w-6xl rounded-lg overflow-y-auto">
                {pokemon && (
                   <div
-                     className={` ${gb} p-1 w-auto h-full rounded-xl flex flex-col z-0 items-center justify-end relative overflow-hidden md:flex md:justify-between md:flex-row `}
+                     className={` ${gb} p-1 w-auto h-full rounded-xl flex flex-col z-0 items-center justify-end relative  md:flex md:justify-between md:flex-row overflow-hidden`}
                   >
                      {pokemon.previous && (
                         <Link
@@ -212,7 +215,7 @@ export function Pokemon() {
                         </Link>
                      )}
 
-                     <div className="w-full flex flex-col z-20 items-center justify-end relative h-full md:flex-1 md:z-0 ">
+                     <div className="w-full flex flex-col z-20 items-center justify-end relative h-full md:flex-1 md:z-0">
                         <div className="absolute top-[35%] right-[35%] translate-x-1/2 -translate-y-1/2 min-w-[13rem] max-w-[16.125rem] md:min-w-[100%] md:-z-10">
                            <Pokeball className="w-full md:-z-30 h-full" />
                         </div>
@@ -221,16 +224,16 @@ export function Pokemon() {
                               <Link aria-label="Go to Pokedex" to="/">
                                  <ArrowLeft className="w-6 h-8 text-zinc-200" />
                               </Link>
-                              <h3 className="text-zinc-200 font-bold text-2xl capitalize ">
+                              <h1 className="text-zinc-200 font-bold text-2xl capitalize ">
                                  {pokemon.name.replaceAll('-', ' ')}
-                              </h3>
+                              </h1>
                            </div>
 
                            <div className="text-zinc-200 font-bold text-xs md:text-sm">
                               #{pokemon.id.toString().padStart(3, '00')}
                            </div>
                         </section>
-                        <div className="relative w-[80%] h-auto max-w-[15.5rem] min-w-[12rem] min-h-[12rem]  max-h-[15.5rem] z-30 md:z-0 -mb-16 md:m-0 md:h-full md:min-h-full md:w-full md:max-w-[450px] ">
+                        <div className="relative w-[80%] h-auto max-w-[15.5rem] min-w-[12rem] min-h-[12rem]  max-h-[20.5rem] z-20 md:z-0 mt-6 -mb-16 md:m-0 md:h-full md:min-h-full md:w-full md:max-w-[450px] ">
                            {pokemon && (
                               <img
                                  src={img}
@@ -243,15 +246,17 @@ export function Pokemon() {
                            )}
                         </div>
                      </div>
-                     <section className="w-full  min-h-[65%] h-[20.75rem] bg-gray-800 rounded-xl z-10 pt-14 flex flex-col  items-center gap-3 px-5 md:w-1/2 md:gap-4 md:h-full md:justify-center ">
+                     <section className="w-full min-h-[65%] h-full bg-gray-800 rounded-xl z-10 pt-14 flex flex-col  items-center gap-3 px-5 md:w-1/2 md:gap-4 md:h-full md:overflow-y-auto md:pt-24 pb-4 scrollbar-thin scrollbar-thumb-slate-300 scrollbar-thumb-rounded-full scrollbar-track-rounded-full scrollbar-corner-rounded-full ">
                         <section className="flex items-center justify-center gap-4">
                            {pokemon.types.map((type: any) => (
                               <Type key={type} type={type}></Type>
                            ))}
                         </section>
-                        <h3 className={`text-sm font-bold ${text}  md:text-lg`}>
+                        <h2
+                           className={`text-base font-semibold ${text}  md:text-lg`}
+                        >
                            About
-                        </h3>
+                        </h2>
                         <section className="flex w-full items-center justify-center flex-row gap-[5%]  md:gap-[7%]  text-center ">
                            <div className="">
                               <div className="text-sm  flex gap-2 items-center text-zinc-200 md:text-base">
@@ -281,9 +286,11 @@ export function Pokemon() {
                         <p className="text-xs leading-4 font-sans text-zinc-200 md:text-sm max-w-[30rem] text-center">
                            {descriptions}
                         </p>
-                        <h3 className={`text-sm font-bold ${text} md:text-lg`}>
+                        <h2
+                           className={`text-base font-semibold ${text} md:text-lg`}
+                        >
                            Base Stats
-                        </h3>
+                        </h2>
                         <div className=" w-full ">
                            {pokemon.stats.map((stat: EditStat) => (
                               <BaseStat
@@ -294,6 +301,19 @@ export function Pokemon() {
                               />
                            ))}
                         </div>
+
+                        {pokemon?.DamageRelations && (
+                           <section className="w-10/12 ">
+                              <h2
+                                 className={`capitalize font-semibold text-base md:text-lg ${text} text-center`}
+                              >
+                                 Type effectiveness
+                              </h2>
+                              <DamageRelations
+                                 damages={pokemon.DamageRelations}
+                              />
+                           </section>
+                        )}
                      </section>
                   </div>
                )}

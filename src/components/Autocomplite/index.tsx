@@ -12,7 +12,6 @@ interface PropsArrayName {
 
 export function Autocomplite({ arrayName, func }: PropsAutocomplite) {
    const [valueInput, setValueInput] = useState('')
-   const [TypeButton, setTypeButton] = useState<any>('submit')
 
    const filterNames = (Input: string) => {
       const value = Input.toLowerCase()
@@ -30,7 +29,6 @@ export function Autocomplite({ arrayName, func }: PropsAutocomplite) {
    }
 
    useEffect(() => {
-      valueInput.length > 0 ? setTypeButton('submit') : setTypeButton('button')
       filterNames(valueInput)
    }, [valueInput])
 
@@ -95,6 +93,7 @@ export function Autocomplite({ arrayName, func }: PropsAutocomplite) {
                   {nameIsEgualInput(valueInput).map((e: PropsArrayName, i) => (
                      <li key={`button-${i}`}>
                         <button
+                           aria-label={e.name}
                            onClick={() => {
                               setValueInput(e.name)
                            }}
