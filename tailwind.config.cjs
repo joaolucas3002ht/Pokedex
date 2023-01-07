@@ -17,7 +17,7 @@ module.exports = {
             electric: '#dfbc30',
             grass: '#7AC74C',
             ice: '#96D9D6',
-            fighting: '#C22E28',
+            fighting: '#b83e3a',
             poison: '#A33EA1',
             ground: '#E2BF65',
             flying: '#A98FF3',
