@@ -59,7 +59,7 @@ export function Autocomplite({ arrayName, func }: PropsAutocomplite) {
                type="text"
                id="Username"
                name="Username"
-               className="text-xs md:text-sm w-[20.5rem] h-6 px-2 py-1 rounded-lg md:h-8 md:w-[23rem] bg-[hsl(214,13%,47%)] text-gray-300 text-center outline-none peer"
+               className="text-xs md:text-sm w-[20.5rem] h-6 px-2 py-1 rounded-lg md:h-8 md:w-[23rem] bg-[hsl(214,13%,47%)] text-gray-300 text-center peer "
                placeholder=" "
             />
             <label

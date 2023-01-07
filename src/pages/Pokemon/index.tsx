@@ -249,7 +249,7 @@ export function Pokemon() {
                      <section className="w-full min-h-[65%] h-full bg-gray-800 rounded-xl z-10 pt-14 flex flex-col  items-center gap-3 px-5 md:w-1/2 md:gap-4 md:h-full md:overflow-y-auto md:pt-24 pb-4 scrollbar-thin scrollbar-thumb-slate-300 scrollbar-thumb-rounded-full scrollbar-track-rounded-full scrollbar-corner-rounded-full ">
                         <section className="flex items-center justify-center gap-4">
                            {pokemon.types.map((type: any) => (
-                              <Type key={type} type={type}></Type>
+                              <Type key={type} type={type} />
                            ))}
                         </section>
                         <h2
@@ -263,7 +263,7 @@ export function Pokemon() {
                                  <Balance />
                                  {pokemon.weight}kg
                               </div>
-                              <AboutTitle title={'Weight'}></AboutTitle>
+                              <AboutTitle title={'Weight'} />
                            </div>
                            <div className=" h-full w-[0.0625rem]  bg-gray-400"></div>
                            <div className="">
@@ -271,7 +271,7 @@ export function Pokemon() {
                                  <Vector />
                                  {pokemon.height}m
                               </div>
-                              <AboutTitle title={'Height'}></AboutTitle>
+                              <AboutTitle title={'Height'} />
                            </div>
                            <div className="w-[0.0625rem] h-full bg-gray-400"></div>
                            <div className="text-sm text-zinc-200  md:text-base">
@@ -280,7 +280,7 @@ export function Pokemon() {
                                     {e}
                                  </div>
                               ))}
-                              <AboutTitle title={'Moves'}></AboutTitle>
+                              <AboutTitle title={'Moves'} />
                            </div>
                         </section>
                         <p className="text-xs leading-4 font-sans text-zinc-200 md:text-sm max-w-[30rem] text-center">
