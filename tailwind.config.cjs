@@ -7,9 +7,6 @@ module.exports = {
    ],
    theme: {
       extend: {
-         // margin:{
-         //     margin: min(-16%, -12rem)
-         // },
          colors: {
             normal: '#A8A77A',
             fire: '#EE8130',

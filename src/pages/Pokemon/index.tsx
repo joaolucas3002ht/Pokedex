@@ -215,9 +215,9 @@ export function Pokemon() {
                         </Link>
                      )}
 
-                     <div className="w-full flex flex-col z-20 items-center justify-end relative h-full md:flex-1 md:z-0">
+                     <div className="w-full flex flex-col z-20 items-center justify-end relative h-full md:flex-1 md:z-0 ">
                         <div className="absolute top-[35%] right-[35%] translate-x-1/2 -translate-y-1/2 min-w-[13rem] max-w-[16.125rem] md:min-w-[100%] md:-z-10">
-                           <Pokeball className="w-full md:-z-30 h-full" />
+                           <Pokeball className="w-full md:-z-30 h-full " />
                         </div>
                         <section className="absolute z-30 top-6 flex items-center w-full justify-between px-6 ">
                            <div className="flex items-center gap-3 ">

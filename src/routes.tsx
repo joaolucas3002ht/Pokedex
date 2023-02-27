@@ -1,7 +1,7 @@
-import { Route, Routes as RoutesDom } from 'react-router-dom'
-import { Pokedex } from './pages/Pokedex'
-import { Pokemon } from './pages/Pokemon'
-import { Page404 } from './pages/Page404'
+import { Route, Routes as RoutesDom } from 'react-router-dom';
+import { Pokedex } from './pages/Pokedex';
+import { Pokemon } from './pages/Pokemon';
+import { Page404 } from './pages/Page404';
 
 export function Routes() {
    return (
@@ -12,5 +12,5 @@ export function Routes() {
             <Route path="*" element={<Page404 />} />
          </RoutesDom>
       </>
-   )
+   );
 }
